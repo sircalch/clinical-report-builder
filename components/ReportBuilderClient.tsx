@@ -2,7 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Download, ShieldCheck } from "lucide-react";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 
 import { PDFDownloadButton } from "@/components/PDFDownloadButton";
@@ -34,6 +34,12 @@ export function ReportBuilderClient() {
   const [helperMessage, setHelperMessage] = useState<string | null>(
     initialState.helperMessage,
   );
+  const [autoSaveState, setAutoSaveState] = useState<"idle" | "saving" | "saved">(
+    "idle",
+  );
+  const [lastAutoSaveAt, setLastAutoSaveAt] = useState<string | null>(null);
+  const hasMountedRef = useRef(false);
+  const watchedValues = form.watch();
 
   const handlePreviewSubmit = (values: ReportFormValues) => {
     setPreviewValues(values);
@@ -80,6 +86,26 @@ export function ReportBuilderClient() {
     setHelperMessage("PDF generado.");
   };
 
+  useEffect(() => {
+    if (!hasMountedRef.current) {
+      hasMountedRef.current = true;
+      return;
+    }
+
+    setAutoSaveState("saving");
+    const timer = window.setTimeout(() => {
+      saveDraft(watchedValues);
+      setAutoSaveState("saved");
+      setLastAutoSaveAt(
+        new Intl.DateTimeFormat("es-MX", {
+          timeStyle: "short",
+        }).format(new Date()),
+      );
+    }, 700);
+
+    return () => window.clearTimeout(timer);
+  }, [watchedValues]);
+
   return (
     <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
       <ReportForm
@@ -101,6 +127,16 @@ export function ReportBuilderClient() {
           <div className="mt-3">
             <PDFDownloadButton onDownload={handleDownloadPdf} />
           </div>
+          <p className="mt-3 text-xs text-slate-600">
+            Autoguardado:{" "}
+            <span className="font-medium text-slate-900">
+              {autoSaveState === "saving"
+                ? "guardando..."
+                : autoSaveState === "saved"
+                  ? `activo (${lastAutoSaveAt ?? "reciente"})`
+                  : "en espera"}
+            </span>
+          </p>
           <p className="mt-2 inline-flex items-center gap-2 text-xs text-slate-600">
             <ShieldCheck className="h-4 w-4" aria-hidden="true" />
             Se valida el formulario antes de generar el archivo.
