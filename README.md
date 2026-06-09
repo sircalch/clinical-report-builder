@@ -74,6 +74,17 @@ http://localhost:3000
 5. Descargar PDF.
 6. Guardar/Cargar/Limpiar borrador local.
 
+### Integracion BioMedTools MX Core
+
+La raiz redirige automaticamente a `/builder/corrective` cuando recibe parametros de actividad:
+
+```txt
+/?activity=quiz&category=<categoria>&score=<puntaje>
+/?activity=case&caseId=<id>&equipment=<equipo>&score=<puntaje>
+```
+
+El builder prellena campos educativos para generar evidencia desde Quiz Arena o Case Simulator. El alumno/docente puede ajustar los campos antes de exportar el PDF.
+
 ### Roadmap premium
 
 - Plantillas preventivo/recepcion/verificacion funcional

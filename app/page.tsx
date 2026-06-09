@@ -1,7 +1,34 @@
 import { Clock3, FileCheck2, FileText, ShieldCheck } from "lucide-react";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
-export default function Home() {
+type HomeProps = {
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
+};
+
+function toBuilderQuery(params: Record<string, string | string[] | undefined>) {
+  const query = new URLSearchParams();
+  for (const [key, value] of Object.entries(params)) {
+    if (Array.isArray(value)) {
+      if (value[0]) {
+        query.set(key, value[0]);
+      }
+      continue;
+    }
+    if (value) {
+      query.set(key, value);
+    }
+  }
+  return query.toString();
+}
+
+export default async function Home({ searchParams }: HomeProps) {
+  const params = await searchParams;
+  if (params.activity) {
+    const query = toBuilderQuery(params);
+    redirect(`/builder/corrective${query ? `?${query}` : ""}`);
+  }
+
   const quickLinks = [
     {
       href: "/templates",

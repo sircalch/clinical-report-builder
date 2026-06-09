@@ -13,14 +13,30 @@ import { reportDefaultValues, reportSchema } from "@/lib/schemas";
 import { clearDraft, loadDraft, saveDraft } from "@/lib/storage";
 import { ReportFormValues } from "@/types/report";
 
-export function ReportBuilderClient() {
+type ReportBuilderClientProps = {
+  prefill?: Partial<ReportFormValues>;
+  prefillMessage?: string | null;
+};
+
+export function ReportBuilderClient({
+  prefill,
+  prefillMessage,
+}: ReportBuilderClientProps) {
   const initialState = useMemo(() => {
     const draft = loadDraft();
-    return {
-      values: draft ?? reportDefaultValues,
-      helperMessage: draft ? "Borrador cargado desde localStorage." : null,
+    const values = {
+      ...reportDefaultValues,
+      ...(draft ?? {}),
+      ...(prefill ?? {}),
     };
-  }, []);
+
+    return {
+      values,
+      helperMessage:
+        prefillMessage ??
+        (draft ? "Borrador cargado desde localStorage." : null),
+    };
+  }, [prefill, prefillMessage]);
 
   const form = useForm<ReportFormValues>({
     resolver: zodResolver(reportSchema),

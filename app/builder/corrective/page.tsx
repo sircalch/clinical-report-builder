@@ -2,8 +2,86 @@ import { ArrowRightLeft, Eye, FileOutput, PenSquare } from "lucide-react";
 import Link from "next/link";
 
 import { ReportBuilderClient } from "@/components/ReportBuilderClient";
+import { ReportFormValues } from "@/types/report";
 
-export default function CorrectiveBuilderPage() {
+type CorrectiveBuilderPageProps = {
+  searchParams: Promise<{
+    activity?: string;
+    category?: string;
+    caseId?: string;
+    equipment?: string;
+    score?: string;
+  }>;
+};
+
+function buildPrefill(
+  params: Awaited<CorrectiveBuilderPageProps["searchParams"]>,
+): { values?: Partial<ReportFormValues>; message?: string } {
+  const scoreText = params.score ? ` Puntaje registrado: ${params.score}.` : "";
+  const baseValues: Partial<ReportFormValues> = {
+    institucion: "Actividad academica",
+    area: "BioMedTools MX Core",
+    marcaModelo: "No aplica (simulacion)",
+    numeroSerie: "N/A",
+    inventario: "N/A",
+    fecha: new Date().toISOString().slice(0, 10),
+    estadoFinal: "operativo-con-observaciones",
+    responsable: "Ing. Andres Monreal / estudiante",
+  };
+
+  if (params.activity === "quiz") {
+    const category = params.category ?? "categoria no especificada";
+    return {
+      values: {
+        ...baseValues,
+        equipo: "Actividad Quiz Arena",
+        fallaReportada: `Evidencia educativa generada desde Quiz Arena. Categoria: ${category}.${scoreText}`,
+        diagnostico:
+          "Actividad de repaso/pretest enfocada en conceptos tecnicos de ingenieria biomedica.",
+        accionRealizada:
+          "Se completo quiz por categoria y se registro desempeno para seguimiento academico.",
+        pruebasFuncionales:
+          `Resultado de actividad documentado desde BioMed Quiz Arena.${scoreText}`,
+        recomendaciones:
+          "Revisar explicaciones tecnicas, practicar caso relacionado y repetir como postest.",
+        observaciones:
+          "Reporte generado como evidencia educativa. No sustituye protocolo clinico ni mantenimiento certificado.",
+      },
+      message: "Reporte prellenado desde Quiz Arena.",
+    };
+  }
+
+  if (params.activity === "case") {
+    const equipment = params.equipment ?? "Equipo simulado";
+    const caseId = params.caseId ?? "caso no especificado";
+    return {
+      values: {
+        ...baseValues,
+        equipo: equipment,
+        fallaReportada: `Caso simulado resuelto en Case Simulator. ID: ${caseId}.${scoreText}`,
+        diagnostico:
+          "Se analizaron pistas, causa probable, herramienta, accion correctiva y contexto de cierre.",
+        accionRealizada:
+          "Se completo el flujo de simulacion y se genero evidencia de razonamiento tecnico.",
+        pruebasFuncionales:
+          `Resultado del caso documentado para actividad academica.${scoreText}`,
+        recomendaciones:
+          "Revisar resolucion tecnica, documentar aprendizaje clave y contrastar con protocolo institucional.",
+        observaciones:
+          "Reporte generado desde una simulacion educativa. Debe adaptarse si se usa en laboratorio.",
+      },
+      message: "Reporte prellenado desde Case Simulator.",
+    };
+  }
+
+  return {};
+}
+
+export default async function CorrectiveBuilderPage({
+  searchParams,
+}: CorrectiveBuilderPageProps) {
+  const prefill = buildPrefill(await searchParams);
+
   return (
     <div className="min-h-screen bg-slate-50">
       <main className="mx-auto w-full max-w-7xl px-4 py-10 md:px-6">
@@ -43,7 +121,10 @@ export default function CorrectiveBuilderPage() {
           </Link>
         </header>
 
-        <ReportBuilderClient />
+        <ReportBuilderClient
+          prefill={prefill.values}
+          prefillMessage={prefill.message}
+        />
       </main>
     </div>
   );
