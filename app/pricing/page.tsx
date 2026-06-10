@@ -6,10 +6,10 @@ export default function PricingPage() {
       <main className="mx-auto w-full max-w-5xl px-4 py-10 md:px-6">
         <header className="mb-6">
           <p className="text-sm font-semibold uppercase tracking-wide text-slate-500">
-            Pricing
+            Roadmap
           </p>
           <h1 className="mt-2 text-3xl font-semibold text-slate-900">
-            Roadmap de version premium
+            Roadmap de plantillas futuras
           </h1>
         </header>
 
@@ -24,7 +24,7 @@ export default function PricingPage() {
             </ul>
           </article>
           <article className="rounded-lg border border-slate-200 bg-white p-6">
-            <h2 className="text-lg font-semibold text-slate-900">Premium</h2>
+            <h2 className="text-lg font-semibold text-slate-900">Proximamente</h2>
             <ul className="mt-3 space-y-2 text-sm text-slate-700">
               <li>Plantillas preventivo y recepcion</li>
               <li>Marca personalizada</li>

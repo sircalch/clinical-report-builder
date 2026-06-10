@@ -72,7 +72,7 @@ export default function RootLayout({
                 className="inline-flex min-h-10 items-center gap-2 rounded-md border border-transparent px-3 py-2 font-medium text-slate-700 hover:border-teal-200 hover:bg-teal-50"
               >
                 <Wrench className="h-4 w-4" aria-hidden="true" />
-                Builder
+                Reporte
               </Link>
               {SHOW_INTERNAL_NAV ? (
                 <Link

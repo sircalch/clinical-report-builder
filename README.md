@@ -83,7 +83,7 @@ La raiz redirige automaticamente a `/builder/corrective` cuando recibe parametro
 /?activity=case&caseId=<id>&equipment=<equipo>&score=<puntaje>
 ```
 
-El builder prellena campos educativos para generar evidencia desde Quiz Arena o Case Simulator. El alumno/docente puede ajustar los campos antes de exportar el PDF.
+El generador prellena campos educativos para generar evidencia desde Quiz Arena o Case Simulator. El alumno/docente puede ajustar los campos antes de exportar el PDF.
 
 ### Roadmap premium
 

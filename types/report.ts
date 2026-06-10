@@ -32,6 +32,6 @@ export type ReportTemplate = {
   name: string;
   description: string;
   href: string;
-  badge: "Gratis" | "Premium";
+  badge: "Gratis" | "Proximamente";
   enabled: boolean;
 };

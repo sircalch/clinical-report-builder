@@ -15,8 +15,8 @@ export default function TemplatesPage() {
             Catalogo de plantillas de reporte
           </h1>
           <p className="mt-3 max-w-3xl text-slate-600">
-            La version gratuita incluye mantenimiento correctivo. Las plantillas
-            premium se habilitan en fases posteriores.
+            La version activa incluye mantenimiento correctivo. Las plantillas
+            futuras se habilitan en fases posteriores.
           </p>
         </header>
 

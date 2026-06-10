@@ -16,7 +16,7 @@ export const reportTemplates: ReportTemplate[] = [
     description:
       "Checklist preventivo con tareas periodicas, tiempos y control de cumplimiento.",
     href: "/builder/preventive",
-    badge: "Premium",
+    badge: "Proximamente",
     enabled: false,
   },
   {
@@ -25,7 +25,7 @@ export const reportTemplates: ReportTemplate[] = [
     description:
       "Formato para pruebas funcionales, tolerancias y evidencia de conformidad.",
     href: "/pricing",
-    badge: "Premium",
+    badge: "Proximamente",
     enabled: false,
   },
 ];

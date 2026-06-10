@@ -33,11 +33,11 @@ export default async function Home({ searchParams }: HomeProps) {
     {
       href: "/templates",
       title: "Plantillas",
-      description: "Selecciona la plantilla gratuita o revisa las premium.",
+      description: "Selecciona la plantilla activa o revisa las proximas plantillas.",
     },
     {
       href: "/builder/corrective",
-      title: "Builder Correctivo",
+      title: "Reporte Correctivo",
       description: "Llena el formulario, valida, previsualiza y exporta PDF.",
     },
     {

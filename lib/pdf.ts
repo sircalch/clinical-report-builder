@@ -39,12 +39,12 @@ export function generateReportPdf(values: ReportFormValues): void {
 
   doc.setFont("helvetica", "bold");
   doc.setFontSize(18);
-  doc.text("Clinical Report Builder", left, y);
+  doc.text("Reporte tecnico biomedico", left, y);
   y += 20;
 
   doc.setFont("helvetica", "normal");
   doc.setFontSize(11);
-  doc.text("Reporte tecnico de mantenimiento correctivo", left, y);
+  doc.text("Mantenimiento correctivo / evidencia academica", left, y);
   y += 24;
 
   PDF_FIELDS.forEach(({ label, key }) => {
