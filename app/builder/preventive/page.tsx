@@ -12,7 +12,7 @@ export default function PreventiveBuilderPage() {
             Plantilla Preventiva
           </h1>
           <p className="mt-3 text-slate-600">
-            Esta plantilla forma parte del roadmap de plantillas futuras. En el MVP solo esta
+            Esta plantilla forma parte del roadmap de plantillas futuras. Por ahora esta
             habilitado el flujo correctivo.
           </p>
           <div className="mt-6">

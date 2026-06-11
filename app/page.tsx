@@ -41,9 +41,9 @@ export default async function Home({ searchParams }: HomeProps) {
       description: "Llena el formulario, valida, previsualiza y exporta PDF.",
     },
     {
-      href: "/about",
-      title: "Acerca",
-      description: "Alcance del MVP y ruta de crecimiento del producto.",
+      href: "/builder/corrective?activity=case&caseId=monitor-sin-spo2&equipment=Monitor%20multiparametrico",
+      title: "Reporte de practica SpO2",
+      description: "Abre un reporte prellenado para documentar el caso piloto.",
     },
   ];
 

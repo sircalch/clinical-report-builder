@@ -1,6 +1,6 @@
 ## Clinical Report Builder
 
-MVP web app para generar reportes tecnicos de mantenimiento biomedico con flujo rapido:
+Aplicacion web para generar reportes tecnicos de mantenimiento biomedico con flujo rapido:
 
 - seleccion de plantilla
 - formulario validado
@@ -65,7 +65,7 @@ npm run dev
 http://localhost:3000
 ```
 
-### Flujo del MVP
+### Flujo principal
 
 1. Ir a `/templates`.
 2. Seleccionar `Mantenimiento Correctivo`.

@@ -3,7 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Download, ShieldCheck } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 
 import { PDFDownloadButton } from "@/components/PDFDownloadButton";
 import { ReportForm } from "@/components/ReportForm";
@@ -55,7 +55,10 @@ export function ReportBuilderClient({
   );
   const [lastAutoSaveAt, setLastAutoSaveAt] = useState<string | null>(null);
   const hasMountedRef = useRef(false);
-  const watchedValues = form.watch();
+  const watchedValues = useWatch({
+    control: form.control,
+    defaultValue: initialState.values,
+  }) as ReportFormValues;
 
   const handlePreviewSubmit = (values: ReportFormValues) => {
     setPreviewValues(values);

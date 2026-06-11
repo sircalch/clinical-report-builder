@@ -7,18 +7,19 @@ export default function AboutPage() {
       <main className="mx-auto w-full max-w-5xl px-4 py-10 md:px-6">
         <section className="rounded-lg border border-slate-200 bg-white p-8">
           <p className="text-sm font-semibold uppercase tracking-wide text-slate-500">
-            Acerca del proyecto
+            Informacion interna
           </p>
           <h1 className="mt-2 text-3xl font-semibold text-slate-900">
             Clinical Report Builder
           </h1>
           <p className="mt-4 text-slate-600">
-            Este MVP se enfoca en una necesidad puntual: generar reportes de
-            mantenimiento correctivo con estructura consistente y salida en PDF.
+            Esta version inicial se enfoca en una necesidad puntual: generar
+            reportes de mantenimiento correctivo con estructura consistente y
+            salida en PDF.
           </p>
 
           <h2 className="mt-6 text-xl font-semibold text-slate-900">
-            Alcance del MVP
+            Alcance actual
           </h2>
           <ul className="mt-3 space-y-2 text-sm text-slate-700">
             <li>Plantilla gratuita de mantenimiento correctivo.</li>

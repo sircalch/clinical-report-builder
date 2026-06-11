@@ -7,8 +7,8 @@ export default function PreviewPage() {
         <section className="rounded-lg border border-slate-200 bg-white p-8">
           <h1 className="text-3xl font-semibold text-slate-900">Vista previa</h1>
           <p className="mt-3 text-slate-600">
-            En el MVP, la vista previa vive dentro del generador correctivo para
-            mantener el flujo rapido en una sola pantalla.
+            La vista previa vive dentro del generador correctivo para mantener el
+            flujo rapido en una sola pantalla.
           </p>
           <div className="mt-6">
             <Link
