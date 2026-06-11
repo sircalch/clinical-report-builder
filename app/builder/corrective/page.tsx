@@ -8,16 +8,57 @@ type CorrectiveBuilderPageProps = {
   searchParams: Promise<{
     activity?: string;
     category?: string;
+    categoryName?: string;
     caseId?: string;
+    caseTitle?: string;
     equipment?: string;
     score?: string;
+    total?: string;
+    maxScore?: string;
   }>;
 };
+
+const CASE_PREFILLS: Record<
+  string,
+  {
+    title: string;
+    fallaReportada: string;
+    diagnostico: string;
+    accionRealizada: string;
+    pruebasFuncionales: string;
+    recomendaciones: string;
+  }
+> = {
+  "monitor-sin-spo2": {
+    title: "Monitor sin lectura de SpO2",
+    fallaReportada:
+      "Monitor multiparametrico con lectura SpO2 ausente o inestable en escenario simulado de monitoreo.",
+    diagnostico:
+      "Falla probable asociada a sensor/cable de SpO2 danado y conector con residuos. El analisis se limita a la verificacion tecnica del equipo y accesorios.",
+    accionRealizada:
+      "Se selecciono reemplazo de sensor, limpieza de conector y prueba funcional con simulador de SpO2.",
+    pruebasFuncionales:
+      "Verificacion educativa de la cadena sensor-cable-modulo mediante simulador de SpO2, revisando presencia de senal estable.",
+    recomendaciones:
+      "Registrar accesorio probado o reemplazado, documentar mensajes de alarma, revisar calidad de senal y seguir protocolo institucional antes de liberar el equipo.",
+  },
+};
+
+function buildScoreText(params: Awaited<CorrectiveBuilderPageProps["searchParams"]>) {
+  if (!params.score) {
+    return "";
+  }
+
+  const denominator = params.maxScore ?? params.total;
+  return denominator
+    ? ` Puntaje registrado: ${params.score}/${denominator}.`
+    : ` Puntaje registrado: ${params.score}.`;
+}
 
 function buildPrefill(
   params: Awaited<CorrectiveBuilderPageProps["searchParams"]>,
 ): { values?: Partial<ReportFormValues>; message?: string } {
-  const scoreText = params.score ? ` Puntaje registrado: ${params.score}.` : "";
+  const scoreText = buildScoreText(params);
   const baseValues: Partial<ReportFormValues> = {
     institucion: "Actividad academica",
     area: "BioMedTools MX Core",
@@ -31,11 +72,12 @@ function buildPrefill(
 
   if (params.activity === "quiz") {
     const category = params.category ?? "categoria no especificada";
+    const categoryName = params.categoryName ?? category;
     return {
       values: {
         ...baseValues,
         equipo: "Actividad Quiz Arena",
-        fallaReportada: `Evidencia educativa generada desde Quiz Arena. Categoria: ${category}.${scoreText}`,
+        fallaReportada: `Evidencia educativa generada desde Quiz Arena. Categoria: ${categoryName}.${scoreText}`,
         diagnostico:
           "Actividad de repaso/pretest enfocada en conceptos tecnicos de ingenieria biomedica.",
         accionRealizada:
@@ -54,18 +96,26 @@ function buildPrefill(
   if (params.activity === "case") {
     const equipment = params.equipment ?? "Equipo simulado";
     const caseId = params.caseId ?? "caso no especificado";
+    const casePrefill = params.caseId ? CASE_PREFILLS[params.caseId] : undefined;
+    const caseTitle = params.caseTitle ?? casePrefill?.title ?? caseId;
     return {
       values: {
         ...baseValues,
         equipo: equipment,
-        fallaReportada: `Caso simulado resuelto en Case Simulator. ID: ${caseId}.${scoreText}`,
+        fallaReportada: casePrefill
+          ? `${casePrefill.fallaReportada} Caso: ${caseTitle}.${scoreText}`
+          : `Caso simulado resuelto en Case Simulator. ID: ${caseId}.${scoreText}`,
         diagnostico:
+          casePrefill?.diagnostico ??
           "Se analizaron pistas, causa probable, herramienta, accion correctiva y contexto de cierre.",
         accionRealizada:
+          casePrefill?.accionRealizada ??
           "Se completo el flujo de simulacion y se genero evidencia de razonamiento tecnico.",
-        pruebasFuncionales:
-          `Resultado del caso documentado para actividad academica.${scoreText}`,
+        pruebasFuncionales: casePrefill
+          ? `${casePrefill.pruebasFuncionales}${scoreText}`
+          : `Resultado del caso documentado para actividad academica.${scoreText}`,
         recomendaciones:
+          casePrefill?.recomendaciones ??
           "Revisar resolucion tecnica, documentar aprendizaje clave y contrastar con protocolo institucional.",
         observaciones:
           "Reporte generado desde una simulacion educativa. Debe adaptarse si se usa en laboratorio.",
