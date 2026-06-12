@@ -18,10 +18,11 @@
 
 body {
   background:
-    radial-gradient(circle at 14% -16%, #dbeafe 0%, transparent 30%),
-    radial-gradient(circle at 92% -18%, #ccfbf1 0%, transparent 28%),
+    linear-gradient(rgba(15, 118, 110, 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 118, 110, 0.045) 1px, transparent 1px),
     linear-gradient(180deg, #f8fbff 0%, #f4f7fb 55%, #f1f5f9 100%),
     var(--background);
+  background-size: 44px 44px, 44px 44px, auto, auto;
   color: var(--foreground);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
   text-rendering: optimizeLegibility;

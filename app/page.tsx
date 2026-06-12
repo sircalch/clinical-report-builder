@@ -54,12 +54,16 @@ export default async function Home({ searchParams }: HomeProps) {
   ];
 
   return (
-    <div className="flex min-h-screen flex-col bg-slate-50">
+    <div className="flex min-h-screen flex-col">
       <main className="mx-auto grid w-full max-w-6xl gap-6 px-4 py-10 md:px-6 lg:grid-cols-[1.15fr_0.85fr]">
-        <section className="rounded-md border border-slate-300 bg-white p-8">
-          <p className="text-sm font-semibold uppercase tracking-wide text-slate-500">
-            Clinical Report Builder
-          </p>
+        <section className="overflow-hidden rounded-lg border border-slate-200 bg-white/95 shadow-[0_18px_50px_rgba(15,23,42,0.09)]">
+          <div className="border-b border-teal-100 bg-teal-50 px-6 py-4 md:px-8">
+            <p className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-teal-800">
+              <FileCheck2 className="h-4 w-4" aria-hidden="true" />
+              Clinical Report Builder
+            </p>
+          </div>
+          <div className="p-6 md:p-8">
           <h1 className="mt-2 text-3xl font-semibold text-slate-900 md:text-4xl">
             Reportes tecnicos de mantenimiento biomedico
           </h1>
@@ -67,8 +71,8 @@ export default async function Home({ searchParams }: HomeProps) {
             Genera reportes correctivos con formato profesional, valida campos
             clave y exporta PDF en minutos.
           </p>
-          <section className="mt-6 grid gap-3 rounded-md border border-slate-200 bg-slate-50 p-4 md:grid-cols-2">
-            <article className="rounded-md border border-slate-200 bg-white p-3">
+          <section className="mt-6 grid gap-3 rounded-md border border-slate-200 bg-slate-50/80 p-4 md:grid-cols-2">
+            <article className="rounded-md border border-teal-100 bg-white p-3 shadow-sm">
               <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
                 Flujo
               </p>
@@ -76,7 +80,7 @@ export default async function Home({ searchParams }: HomeProps) {
                 Plantilla - Formulario - Vista previa - PDF.
               </p>
             </article>
-            <article className="rounded-md border border-slate-200 bg-white p-3">
+            <article className="rounded-md border border-teal-100 bg-white p-3 shadow-sm">
               <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
                 Control
               </p>
@@ -105,7 +109,7 @@ export default async function Home({ searchParams }: HomeProps) {
             {metrics.map((item) => (
               <article
                 key={item.label}
-                className="rounded-md border border-slate-200 bg-slate-50 p-3"
+                className="rounded-md border border-slate-200 bg-slate-50/90 p-3"
               >
                 <div className="flex items-center gap-2 text-slate-500">
                   <item.icon className="h-4 w-4" aria-hidden="true" />
@@ -119,31 +123,32 @@ export default async function Home({ searchParams }: HomeProps) {
               </article>
             ))}
           </div>
+          </div>
         </section>
 
-        <section className="rounded-md border border-slate-300 bg-white">
-          <header className="border-b border-slate-200 px-6 py-4">
-            <h2 className="text-sm font-semibold uppercase tracking-wide text-slate-500">
+        <section className="overflow-hidden rounded-lg border border-slate-200 bg-slate-950 text-white shadow-[0_18px_50px_rgba(15,23,42,0.14)]">
+          <header className="border-b border-white/10 px-6 py-4">
+            <h2 className="text-sm font-semibold uppercase tracking-wide text-slate-300">
               Accesos rapidos
             </h2>
           </header>
-          <ul className="divide-y divide-slate-200">
+          <ul className="divide-y divide-white/10">
             {quickLinks.map((item) => (
               <li key={item.href}>
                 <Link
                   href={item.href}
-                  className="block px-6 py-4 transition hover:bg-slate-50"
+                  className="block px-6 py-4 transition hover:bg-white/[0.05]"
                 >
-                  <p className="text-sm font-semibold text-slate-900">{item.title}</p>
-                  <p className="mt-1 text-sm text-slate-600">
+                  <p className="text-sm font-semibold text-white">{item.title}</p>
+                  <p className="mt-1 text-sm text-slate-300">
                     {item.description}
                   </p>
                 </Link>
               </li>
             ))}
           </ul>
-          <footer className="border-t border-slate-200 px-6 py-3">
-            <p className="inline-flex items-center gap-2 text-xs text-slate-600">
+          <footer className="border-t border-white/10 px-6 py-3">
+            <p className="inline-flex items-center gap-2 text-xs text-slate-300">
               <ShieldCheck className="h-4 w-4" aria-hidden="true" />
               No envia datos: toda la sesion se mantiene en el navegador.
             </p>

@@ -157,27 +157,27 @@ export function ReportForm({
   );
 
   return (
-    <section className="rounded-md border border-slate-200 bg-white p-6">
-      <h2 className="text-base font-semibold uppercase tracking-wide text-slate-500">
+    <section className="rounded-lg border border-slate-200 bg-white/95 p-6 shadow-sm">
+      <h2 className="text-base font-semibold uppercase tracking-wide text-teal-700">
         Formulario Correctivo
       </h2>
       <p className="mt-2 text-sm text-slate-600">
         Completa campos tecnicos y actualiza la vista previa.
       </p>
-      <section className="mt-4 rounded-md border border-slate-200 bg-slate-50 p-4">
+      <section className="mt-4 rounded-md border border-teal-100 bg-teal-50/60 p-4">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <p className="inline-flex items-center gap-2 text-sm font-medium text-slate-700">
-            <ChartNoAxesColumn className="h-4 w-4 text-slate-500" aria-hidden="true" />
+            <ChartNoAxesColumn className="h-4 w-4 text-teal-700" aria-hidden="true" />
             Avance de captura
           </p>
           <p className="inline-flex items-center gap-2 text-sm font-semibold text-slate-900">
-            <CircleCheckBig className="h-4 w-4 text-slate-500" aria-hidden="true" />
+            <CircleCheckBig className="h-4 w-4 text-teal-700" aria-hidden="true" />
             {completedRequiredFields}/{REQUIRED_FIELD_NAMES.length} campos clave
           </p>
         </div>
-        <div className="mt-3 h-2 overflow-hidden rounded-full bg-slate-200">
+        <div className="mt-3 h-2 overflow-hidden rounded-full bg-teal-100">
           <div
-            className="h-full rounded-full bg-slate-800 transition-all"
+            className="h-full rounded-full bg-teal-700 transition-all"
             style={{ width: `${completionPercent}%` }}
           />
         </div>
@@ -187,7 +187,7 @@ export function ReportForm({
       </section>
 
       <form onSubmit={form.handleSubmit(onPreviewSubmit)} className="mt-5 space-y-5">
-        <section className="rounded-md border border-slate-200 bg-slate-50 p-4">
+        <section className="rounded-md border border-slate-200 bg-slate-50/80 p-4">
           <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-500">
             Datos del equipo
           </h3>
@@ -217,7 +217,7 @@ export function ReportForm({
           </div>
         </section>
 
-        <section className="rounded-md border border-slate-200 bg-white p-4">
+        <section className="rounded-md border border-slate-200 bg-white p-4 shadow-sm">
           <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-500">
             Control del reporte
           </h3>
@@ -263,7 +263,7 @@ export function ReportForm({
           </div>
         </section>
 
-        <section className="rounded-md border border-slate-200 bg-white p-4">
+        <section className="rounded-md border border-slate-200 bg-white p-4 shadow-sm">
           <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-500">
             Diagnostico tecnico
           </h3>
@@ -296,7 +296,7 @@ export function ReportForm({
         <div className="flex flex-wrap items-center gap-2">
           <button
             type="submit"
-            className="inline-flex min-h-11 items-center justify-center rounded-md bg-slate-900 px-4 py-2 text-sm font-medium text-white transition hover:bg-slate-700"
+            className="inline-flex min-h-11 items-center justify-center rounded-md bg-teal-700 px-4 py-2 text-sm font-medium text-white transition hover:bg-teal-800"
           >
             Actualizar vista previa
           </button>

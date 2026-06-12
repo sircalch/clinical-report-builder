@@ -133,11 +133,11 @@ export default async function CorrectiveBuilderPage({
   const prefill = buildPrefill(await searchParams);
 
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="min-h-screen">
       <main className="mx-auto w-full max-w-7xl px-4 py-10 md:px-6">
-        <header className="mb-8 flex flex-wrap items-start justify-between gap-4">
+        <header className="mb-8 flex flex-wrap items-start justify-between gap-4 rounded-lg border border-slate-200 bg-white/95 p-5 shadow-sm">
           <div>
-            <p className="text-sm font-semibold uppercase tracking-wide text-slate-500">
+            <p className="text-sm font-semibold uppercase tracking-wide text-teal-700">
               Generador
             </p>
             <h1 className="mt-2 text-3xl font-semibold text-slate-900">
@@ -148,7 +148,7 @@ export default async function CorrectiveBuilderPage({
               reporte en PDF.
             </p>
             <div className="mt-4 flex flex-wrap gap-2 text-xs font-medium text-slate-700">
-              <span className="inline-flex items-center gap-1 rounded border border-slate-300 bg-white px-2 py-1">
+              <span className="inline-flex items-center gap-1 rounded border border-teal-200 bg-teal-50 px-2 py-1 text-teal-800">
                 <PenSquare className="h-3.5 w-3.5" aria-hidden="true" />
                 Captura
               </span>

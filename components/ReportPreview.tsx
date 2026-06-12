@@ -32,9 +32,9 @@ export function ReportPreview({ values }: ReportPreviewProps) {
   ];
 
   return (
-    <section className="rounded-md border border-slate-200 bg-white p-6">
+    <section className="rounded-lg border border-slate-200 bg-white/95 p-6 shadow-sm">
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <h2 className="text-sm font-semibold uppercase tracking-wide text-slate-500">
+        <h2 className="text-sm font-semibold uppercase tracking-wide text-teal-700">
           Vista previa
         </h2>
         <StatusBadge status={values.estadoFinal} />
@@ -42,7 +42,7 @@ export function ReportPreview({ values }: ReportPreviewProps) {
 
       <dl className="mt-4 grid gap-3 sm:grid-cols-2">
         {metaFields.map((field) => (
-          <div key={field.label} className="rounded-md border border-slate-200 p-3">
+          <div key={field.label} className="rounded-md border border-slate-200 bg-slate-50/80 p-3">
             <dt className="text-xs font-semibold uppercase tracking-wide text-slate-500">
               {field.label}
             </dt>
@@ -55,7 +55,7 @@ export function ReportPreview({ values }: ReportPreviewProps) {
 
       <div className="mt-4 space-y-3">
         {narrativeFields.map((field) => (
-          <div key={field.label} className="rounded-md border border-slate-200 p-3">
+          <div key={field.label} className="rounded-md border border-slate-200 bg-white p-3">
             <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
               {field.label}
             </p>
