@@ -126,7 +126,7 @@ export function ReportBuilderClient({
   }, [watchedValues]);
 
   return (
-    <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
+    <div className="grid gap-6 lg:grid-cols-[1fr_0.92fr]">
       <ReportForm
         form={form}
         onPreviewSubmit={handlePreviewSubmit}
@@ -136,12 +136,17 @@ export function ReportBuilderClient({
         helperMessage={helperMessage}
       />
       <div className="space-y-4 lg:sticky lg:top-4 lg:self-start">
-        <section className="rounded-lg border border-slate-200 bg-white/95 p-4 shadow-sm">
-          <div className="flex items-center gap-2 text-teal-700">
-            <Download className="h-4 w-4" aria-hidden="true" />
-            <h2 className="text-sm font-semibold uppercase tracking-wide">
-              Acciones
-            </h2>
+        <section className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
+          <div className="flex items-center justify-between gap-3">
+            <div className="flex items-center gap-2 text-teal-700">
+              <Download className="h-4 w-4" aria-hidden="true" />
+              <h2 className="text-sm font-semibold uppercase tracking-wide">
+                Acciones
+              </h2>
+            </div>
+            <span className="rounded-md border border-teal-200 bg-teal-50 px-2 py-1 text-xs font-semibold text-teal-800">
+              PDF
+            </span>
           </div>
           <div className="mt-3">
             <PDFDownloadButton onDownload={handleDownloadPdf} />
