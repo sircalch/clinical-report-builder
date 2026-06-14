@@ -28,4 +28,31 @@ export const reportTemplates: ReportTemplate[] = [
     badge: "Proximamente",
     enabled: false,
   },
+  {
+    id: "equipment-reception",
+    name: "Recepcion de Equipo",
+    description:
+      "Registro de ingreso, accesorios, condicion inicial y observaciones para laboratorio o area tecnica.",
+    href: "/pricing",
+    badge: "Proximamente",
+    enabled: false,
+  },
+  {
+    id: "equipment-retirement",
+    name: "Baja Tecnica",
+    description:
+      "Documento educativo para justificar retiro, no conformidad o envio a evaluacion especializada.",
+    href: "/pricing",
+    badge: "Proximamente",
+    enabled: false,
+  },
+  {
+    id: "practice-evidence",
+    name: "Evidencia de Practica",
+    description:
+      "Resumen academico para anexar resultado de quiz, caso simulado y aprendizaje documentado.",
+    href: "/pricing",
+    badge: "Proximamente",
+    enabled: false,
+  },
 ];
