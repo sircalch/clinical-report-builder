@@ -1,73 +1,100 @@
-import { ExternalLink, Wrench } from "lucide-react";
+import {
+  ArrowRight,
+  FileCheck2,
+  FileText,
+  LayoutTemplate,
+  ShieldCheck,
+} from "lucide-react";
 import Link from "next/link";
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-slate-50">
-      <main className="mx-auto w-full max-w-5xl px-4 py-10 md:px-6">
-        <section className="rounded-lg border border-slate-200 bg-white p-8">
-          <p className="text-sm font-semibold uppercase tracking-wide text-slate-500">
-            Informacion interna
-          </p>
-          <h1 className="mt-2 text-3xl font-semibold text-slate-900">
-            Clinical Report Builder
-          </h1>
-          <p className="mt-4 text-slate-600">
-            Esta version inicial se enfoca en una necesidad puntual: generar
-            reportes de mantenimiento correctivo con estructura consistente y
-            salida en PDF.
-          </p>
+    <div className="min-h-screen">
+      <main className="mx-auto w-full max-w-6xl px-4 py-8 md:px-6">
+        <section className="overflow-hidden rounded-lg border border-slate-200 bg-white shadow-[0_18px_55px_rgba(15,23,42,0.10)]">
+          <div className="grid lg:grid-cols-[1.08fr_0.92fr]">
+            <div className="p-6 md:p-8">
+              <div className="flex items-center gap-3">
+                <span className="flex h-11 w-11 items-center justify-center rounded-md border border-teal-200 bg-teal-50 text-teal-700">
+                  <FileCheck2 className="h-5 w-5" aria-hidden="true" />
+                </span>
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-wide text-teal-700">
+                    BioMedTools MX Core
+                  </p>
+                  <h1 className="text-3xl font-semibold text-slate-950">
+                    Clinical Report Builder
+                  </h1>
+                </div>
+              </div>
 
-          <h2 className="mt-6 text-xl font-semibold text-slate-900">
-            Alcance actual
-          </h2>
-          <ul className="mt-3 space-y-2 text-sm text-slate-700">
-            <li>Plantilla gratuita de mantenimiento correctivo.</li>
-            <li>Validacion con Zod y React Hook Form.</li>
-            <li>Vista previa integrada.</li>
-            <li>Borrador local con localStorage.</li>
-            <li>Exportacion PDF con jsPDF.</li>
-          </ul>
+              <p className="mt-5 max-w-3xl text-base leading-7 text-slate-600">
+                Herramienta educativa para crear reportes tecnicos biomedicos
+                con estructura clara, vista previa y exportacion PDF para
+                practicas, mantenimiento y evidencia academica.
+              </p>
 
-          <div className="mt-8">
-            <Link
-              href="/builder/corrective"
-              className="inline-flex min-h-11 items-center justify-center gap-2 rounded-md bg-slate-900 px-4 py-2 text-sm font-medium text-white transition hover:bg-slate-700"
-            >
-              <Wrench className="h-4 w-4" aria-hidden="true" />
-              Probar generador
-            </Link>
+              <div className="mt-6 flex flex-wrap gap-3">
+                <Link
+                  href="/builder/corrective"
+                  className="inline-flex min-h-11 items-center justify-center gap-2 rounded-md bg-teal-700 px-4 py-2 text-sm font-semibold text-white transition hover:bg-teal-800"
+                >
+                  Crear reporte
+                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                </Link>
+                <Link
+                  href="/templates"
+                  className="inline-flex min-h-11 items-center justify-center rounded-md border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-50"
+                >
+                  Ver plantillas
+                </Link>
+              </div>
+            </div>
+
+            <aside className="border-t border-slate-200 bg-blue-950 p-5 text-white lg:border-l lg:border-t-0 md:p-7">
+              <h2 className="text-sm font-semibold uppercase tracking-wide text-teal-100">
+                Uso educativo
+              </h2>
+              <p className="mt-3 text-sm leading-6 text-blue-100">
+                La documentacion generada apoya actividades academicas y
+                entrenamiento tecnico. No reemplaza formatos institucionales,
+                normativas aplicables ni supervision profesional.
+              </p>
+
+              <div className="mt-5 grid gap-3">
+                {[
+                  {
+                    title: "Plantillas",
+                    body: "Formatos estructurados para documentacion tecnica.",
+                    icon: LayoutTemplate,
+                  },
+                  {
+                    title: "Vista previa",
+                    body: "Revision del contenido antes de exportar evidencia.",
+                    icon: FileText,
+                  },
+                  {
+                    title: "Privacidad",
+                    body: "El flujo evita solicitar datos clinicos sensibles.",
+                    icon: ShieldCheck,
+                  },
+                ].map((item) => (
+                  <article
+                    key={item.title}
+                    className="rounded-md border border-white/10 bg-white/[0.05] p-3"
+                  >
+                    <item.icon className="h-4 w-4 text-teal-100" aria-hidden="true" />
+                    <p className="mt-2 text-sm font-semibold text-white">
+                      {item.title}
+                    </p>
+                    <p className="mt-1 text-xs leading-5 text-blue-100">
+                      {item.body}
+                    </p>
+                  </article>
+                ))}
+              </div>
+            </aside>
           </div>
-
-          <section className="mt-8 rounded-md border border-slate-200 bg-slate-50 p-4">
-            <h2 className="text-sm font-semibold uppercase tracking-wide text-slate-500">
-              Referencias de interfaz
-            </h2>
-            <ul className="mt-3 space-y-2 text-sm text-slate-700">
-              <li>
-                <a
-                  href="https://linear.app/docs/search"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-2 font-medium text-slate-800 underline"
-                >
-                  Patron de busqueda y comando rapido (Linear)
-                  <ExternalLink className="h-4 w-4" aria-hidden="true" />
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://m1.material.io/components/data-tables.html"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-2 font-medium text-slate-800 underline"
-                >
-                  Jerarquia de datos en superficies densas (Material)
-                  <ExternalLink className="h-4 w-4" aria-hidden="true" />
-                </a>
-              </li>
-            </ul>
-          </section>
         </section>
       </main>
     </div>
