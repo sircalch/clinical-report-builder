@@ -12,7 +12,6 @@ import { reportTemplates } from "@/data/templates";
 
 export default function TemplatesPage() {
   const activeTemplates = reportTemplates.filter((template) => template.enabled);
-  const upcomingTemplates = reportTemplates.length - activeTemplates.length;
 
   return (
     <div className="min-h-screen">
@@ -34,9 +33,9 @@ export default function TemplatesPage() {
                 </div>
               </div>
               <p className="mt-4 max-w-3xl text-sm leading-6 text-slate-600">
-                Formatos educativos para documentacion tecnica biomedica. La
-                plantilla correctiva esta activa y el resto marca el crecimiento
-                natural del sistema.
+                Formatos educativos para documentacion tecnica biomedica. Las
+                plantillas comparten el mismo motor de captura, vista previa y PDF,
+                con prellenado segun el objetivo del reporte.
               </p>
               <div className="mt-5 flex flex-wrap gap-3">
                 <Link
@@ -58,7 +57,7 @@ export default function TemplatesPage() {
             <section className="grid gap-3 rounded-lg border border-slate-200 bg-slate-50 p-4 sm:grid-cols-3 lg:grid-cols-1">
               {[
                 { label: "Activas", value: activeTemplates.length, icon: FileCheck2 },
-                { label: "Proximas", value: upcomingTemplates, icon: ShieldCheck },
+                { label: "Formatos", value: reportTemplates.length, icon: ShieldCheck },
                 { label: "Salida", value: "PDF", icon: FileText },
               ].map((item) => (
                 <article
@@ -85,7 +84,7 @@ export default function TemplatesPage() {
               Plantillas disponibles
             </h2>
             <p className="text-sm text-slate-500">
-              Usa la correctiva para el flujo Quiz - Caso - Reporte.
+              Usa plantillas correctivas, preventivas y de evidencia academica.
             </p>
           </div>
           <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">

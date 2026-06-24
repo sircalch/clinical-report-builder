@@ -23,6 +23,7 @@ type CorrectiveBuilderPageProps = {
     score?: string;
     total?: string;
     maxScore?: string;
+    template?: string;
   }>;
 };
 
@@ -52,6 +53,112 @@ const CASE_PREFILLS: Record<
   },
 };
 
+const TEMPLATE_PREFILLS: Record<
+  string,
+  {
+    label: string;
+    message: string;
+    values: (equipment: string) => Partial<ReportFormValues>;
+  }
+> = {
+  preventive: {
+    label: "Preventivo",
+    message: "Plantilla preventiva prellenada.",
+    values: (equipment) => ({
+      equipo: equipment,
+      fallaReportada:
+        "Mantenimiento preventivo programado para verificacion fisica, funcional y documental del equipo.",
+      diagnostico:
+        "No se reporta falla. Actividad orientada a confirmar condicion operativa, accesorios, limpieza, alimentacion, alarmas y registro de mantenimiento.",
+      accionRealizada:
+        "Se realizo inspeccion visual, revision de accesorios, limpieza externa educativa, verificacion de alimentacion y comprobacion funcional basica.",
+      pruebasFuncionales:
+        "Prueba de encendido, verificacion de indicadores, alarmas visibles y respuesta funcional de acuerdo con el alcance academico.",
+      recomendaciones:
+        "Mantener bitacora actualizada, programar siguiente revision preventiva y escalar cualquier anomalia conforme a protocolo institucional.",
+      observaciones:
+        "Formato preventivo educativo. No sustituye mantenimiento certificado ni pruebas normativas del fabricante.",
+    }),
+  },
+  "functional-verification": {
+    label: "Verificacion funcional",
+    message: "Plantilla de verificacion funcional prellenada.",
+    values: (equipment) => ({
+      equipo: equipment,
+      fallaReportada:
+        "Solicitud de verificacion funcional educativa para confirmar respuesta general del equipo.",
+      diagnostico:
+        "Se documentan condiciones iniciales, accesorios disponibles, alimentacion, alarmas visibles y comportamiento funcional observado.",
+      accionRealizada:
+        "Se ejecuto una secuencia de prueba funcional basica con registro de condiciones y limitaciones del escenario.",
+      pruebasFuncionales:
+        "Encendido, revision de controles, indicadores, alarmas y respuesta del equipo dentro del alcance educativo.",
+      recomendaciones:
+        "Comparar resultados contra protocolo institucional, anexar evidencia y solicitar revision especializada si existe desviacion.",
+      observaciones:
+        "Verificacion funcional formativa. No equivale a calibracion, certificacion ni liberacion clinica.",
+    }),
+  },
+  "equipment-reception": {
+    label: "Recepcion de equipo",
+    message: "Plantilla de recepcion de equipo prellenada.",
+    values: (equipment) => ({
+      equipo: equipment,
+      fallaReportada:
+        "Recepcion de equipo para registro inicial de condicion, accesorios, identificacion y observaciones.",
+      diagnostico:
+        "Se revisa condicion fisica visible, documentacion disponible, accesorios incluidos, identificacion e inventario.",
+      accionRealizada:
+        "Se capturaron datos generales, estado inicial, accesorios y observaciones para control academico o tecnico.",
+      pruebasFuncionales:
+        "Prueba inicial limitada a encendido/indicadores visibles cuando el contexto lo permite.",
+      recomendaciones:
+        "Completar inventario, anexar fotografias, registrar faltantes y programar verificacion funcional si aplica.",
+      observaciones:
+        "Formato educativo de recepcion. Adaptar a politicas institucionales antes de uso operativo.",
+    }),
+  },
+  "equipment-retirement": {
+    label: "Baja tecnica",
+    message: "Plantilla de baja tecnica prellenada.",
+    values: (equipment) => ({
+      equipo: equipment,
+      estadoFinal: "fuera-de-servicio",
+      fallaReportada:
+        "Equipo propuesto para baja tecnica o evaluacion especializada por condicion operativa no conforme.",
+      diagnostico:
+        "Se documentan hallazgos visibles, limitaciones funcionales, antecedentes y motivo de retiro educativo.",
+      accionRealizada:
+        "Se registro condicion del equipo, evidencia disponible y recomendacion de retiro o evaluacion especializada.",
+      pruebasFuncionales:
+        "No se libera para uso. La prueba se limita a observacion y documentacion de condicion reportada.",
+      recomendaciones:
+        "Retirar de uso academico/operativo hasta dictamen responsable, etiquetar condicion y conservar evidencia.",
+      observaciones:
+        "Formato educativo. Toda baja real debe seguir politica institucional y autorizacion correspondiente.",
+    }),
+  },
+  "practice-evidence": {
+    label: "Evidencia de practica",
+    message: "Plantilla de evidencia academica prellenada.",
+    values: (equipment) => ({
+      equipo: equipment,
+      fallaReportada:
+        "Evidencia academica de actividad BioMedTools MX Core: quiz, caso simulado y reporte tecnico.",
+      diagnostico:
+        "El estudiante integro conceptos tecnicos, razonamiento de caso y documentacion de hallazgos en un flujo formativo.",
+      accionRealizada:
+        "Se completo una actividad guiada y se genero evidencia para seguimiento docente.",
+      pruebasFuncionales:
+        "Evidencia compuesta por resultado de quiz, caso simulado, observaciones y reporte generado.",
+      recomendaciones:
+        "Usar como pretest/postest, revisar areas debiles y repetir la ruta despues de retroalimentacion docente.",
+      observaciones:
+        "Reporte academico. No sustituye documentacion clinica, mantenimiento certificado ni protocolos institucionales.",
+    }),
+  },
+};
+
 function buildScoreText(params: Awaited<CorrectiveBuilderPageProps["searchParams"]>) {
   if (!params.score) {
     return "";
@@ -65,11 +172,17 @@ function buildScoreText(params: Awaited<CorrectiveBuilderPageProps["searchParams
 
 function buildPrefill(
   params: Awaited<CorrectiveBuilderPageProps["searchParams"]>,
-): { values?: Partial<ReportFormValues>; message?: string } {
+): {
+  values?: Partial<ReportFormValues>;
+  message?: string;
+  templateLabel?: string;
+} {
   const scoreText = buildScoreText(params);
+  const template = params.template ? TEMPLATE_PREFILLS[params.template] : undefined;
   const baseValues: Partial<ReportFormValues> = {
     institucion: "Actividad academica",
     area: "BioMedTools MX Core",
+    equipo: params.equipment ?? "Equipo biomedico",
     marcaModelo: "No aplica (simulacion)",
     numeroSerie: "N/A",
     inventario: "N/A",
@@ -77,6 +190,18 @@ function buildPrefill(
     estadoFinal: "operativo-con-observaciones",
     responsable: "Ing. Andres Monreal / estudiante",
   };
+
+  if (template) {
+    const equipment = params.equipment ?? "Equipo biomedico";
+    return {
+      values: {
+        ...baseValues,
+        ...template.values(equipment),
+      },
+      message: template.message,
+      templateLabel: template.label,
+    };
+  }
 
   if (params.activity === "quiz") {
     const category = params.category ?? "categoria no especificada";
@@ -98,6 +223,7 @@ function buildPrefill(
           "Reporte generado como evidencia educativa. No sustituye protocolo clinico ni mantenimiento certificado.",
       },
       message: "Reporte prellenado desde Quiz Arena.",
+      templateLabel: "Evidencia academica",
     };
   }
 
@@ -129,6 +255,7 @@ function buildPrefill(
           "Reporte generado desde una simulacion educativa. Debe adaptarse si se usa en laboratorio.",
       },
       message: "Reporte prellenado desde Case Simulator.",
+      templateLabel: "Caso simulado",
     };
   }
 
@@ -200,7 +327,7 @@ export default async function CorrectiveBuilderPage({
                     Tipo de reporte:
                   </span>
                   <span className="rounded-md border border-slate-200 bg-white px-3 py-1.5 font-semibold text-slate-700">
-                    Correctivo
+                    {prefill.templateLabel ?? "Correctivo"}
                   </span>
                   <span className="hidden items-center gap-1 rounded-md border border-teal-200 bg-teal-50 px-2 py-1 font-semibold text-teal-800 sm:inline-flex">
                     <PenSquare className="h-3.5 w-3.5" aria-hidden="true" />
@@ -226,6 +353,7 @@ export default async function CorrectiveBuilderPage({
                 <ReportBuilderClient
                   prefill={prefill.values}
                   prefillMessage={prefill.message}
+                  reportLabel={prefill.templateLabel ?? "Correctivo"}
                 />
               </div>
             </div>

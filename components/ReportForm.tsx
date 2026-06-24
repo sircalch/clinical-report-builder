@@ -7,6 +7,7 @@ import { REPORT_STATUS_OPTIONS, ReportFormValues } from "@/types/report";
 
 type ReportFormProps = {
   form: UseFormReturn<ReportFormValues>;
+  reportLabel: string;
   onPreviewSubmit: (values: ReportFormValues) => void;
   onSaveDraft: () => void;
   onLoadDraft: () => void;
@@ -139,6 +140,7 @@ function FieldError({
 
 export function ReportForm({
   form,
+  reportLabel,
   onPreviewSubmit,
   onSaveDraft,
   onLoadDraft,
@@ -159,7 +161,7 @@ export function ReportForm({
   return (
     <section className="rounded-lg border border-slate-200 bg-white/95 p-6 shadow-sm">
       <h2 className="text-base font-semibold uppercase tracking-wide text-teal-700">
-        Formulario Correctivo
+        Formulario {reportLabel}
       </h2>
       <p className="mt-2 text-sm text-slate-600">
         Completa campos tecnicos y actualiza la vista previa.

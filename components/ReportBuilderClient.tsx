@@ -16,11 +16,13 @@ import { ReportFormValues } from "@/types/report";
 type ReportBuilderClientProps = {
   prefill?: Partial<ReportFormValues>;
   prefillMessage?: string | null;
+  reportLabel?: string;
 };
 
 export function ReportBuilderClient({
   prefill,
   prefillMessage,
+  reportLabel = "Correctivo",
 }: ReportBuilderClientProps) {
   const initialState = useMemo(() => {
     const draft = loadDraft();
@@ -170,6 +172,7 @@ export function ReportBuilderClient({
     <div className="grid gap-6 lg:grid-cols-[1fr_0.92fr]">
       <ReportForm
         form={form}
+        reportLabel={reportLabel}
         onPreviewSubmit={handlePreviewSubmit}
         onSaveDraft={handleSaveDraft}
         onLoadDraft={handleLoadDraft}

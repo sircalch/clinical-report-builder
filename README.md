@@ -68,7 +68,7 @@ http://localhost:3000
 ### Flujo principal
 
 1. Ir a `/templates`.
-2. Seleccionar `Mantenimiento Correctivo`.
+2. Seleccionar plantilla: correctivo, preventivo, verificacion funcional, recepcion, baja tecnica o evidencia de practica.
 3. Llenar formulario.
 4. Click en `Actualizar vista previa`.
 5. Descargar PDF.
@@ -85,9 +85,19 @@ La raiz redirige automaticamente a `/builder/corrective` cuando recibe parametro
 
 El generador prellena campos educativos para generar evidencia desde Quiz Arena o Case Simulator. El alumno/docente puede ajustar los campos antes de exportar el PDF.
 
+### Plantillas activas
+
+Todas usan el mismo motor de formulario, vista previa, autoguardado y PDF:
+
+- `Mantenimiento Correctivo`: falla, diagnostico, accion y cierre.
+- `Mantenimiento Preventivo`: checklist preventivo y verificacion programada.
+- `Verificacion Funcional`: pruebas funcionales y conformidad educativa.
+- `Recepcion de Equipo`: ingreso, accesorios y condicion inicial.
+- `Baja Tecnica`: retiro educativo o evaluacion especializada.
+- `Evidencia de Practica`: resumen academico de actividad Quiz - Caso - Reporte.
+
 ### Roadmap premium
 
-- Plantillas preventivo/recepcion/verificacion funcional
 - branding personalizado
 - historial de reportes
 - exportaciones avanzadas
