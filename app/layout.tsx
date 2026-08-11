@@ -15,10 +15,53 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  "https://clinical-report-builder.vercel.app";
+const OG_IMAGE = "/biomed-equipment-atlas.png";
+
 export const metadata: Metadata = {
-  title: "Clinical Report Builder",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: "Clinical Report Builder",
+    template: "%s | Clinical Report Builder",
+  },
   description:
     "Genera reportes tecnicos de mantenimiento biomedico de forma rapida y profesional.",
+  applicationName: "Clinical Report Builder",
+  authors: [{ name: "Ing. Andres Monreal" }],
+  creator: "Ing. Andres Monreal / Topic Tales Biomedica",
+  keywords: [
+    "reportes biomedicos",
+    "mantenimiento biomedico",
+    "ingenieria clinica",
+    "documentacion tecnica",
+    "evidencia academica",
+  ],
+  openGraph: {
+    title: "Clinical Report Builder",
+    description:
+      "Generador de reportes tecnicos biomedicos para practicas, mantenimiento y evidencia profesional.",
+    url: SITE_URL,
+    siteName: "BioMedTools MX Core",
+    images: [
+      {
+        url: OG_IMAGE,
+        width: 1600,
+        height: 1000,
+        alt: "Generador de reportes tecnicos biomedicos",
+      },
+    ],
+    locale: "es_MX",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Clinical Report Builder",
+    description:
+      "Crea reportes tecnicos biomedicos con formato profesional y evidencia exportable.",
+    images: [OG_IMAGE],
+  },
 };
 
 const DONATION_URL = process.env.NEXT_PUBLIC_DONATION_URL ?? "";

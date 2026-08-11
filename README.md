@@ -117,6 +117,17 @@ La ruta `/about` esta protegida con HTTP Basic Auth en `proxy.ts`.
 - `INTERNAL_ROUTE_USER`
 - `INTERNAL_ROUTE_PASSWORD`
 - `NEXT_PUBLIC_SHOW_INTERNAL_NAV` (opcional, `true` para mostrar link interno en el menu)
+- `NEXT_PUBLIC_SITE_URL` (opcional, usado para metadata publica)
+- `NEXT_PUBLIC_CORE_URL` (opcional, default: `https://biomedtools-mx-core.vercel.app`)
+- `NEXT_PUBLIC_QUIZ_ARENA_URL` (opcional, default: `https://biomed-quiz-arena.vercel.app`)
+- `NEXT_PUBLIC_CASE_SIMULATOR_URL` (opcional, default: `https://biomed-case-simulator.vercel.app`)
+
+### Calidad del repositorio
+
+- CI en GitHub Actions: `npm ci`, `npm run lint`, `npm run build` y `npm audit --audit-level=high`.
+- Variables documentadas en `.env.example`.
+- Politica de seguridad en `SECURITY.md`.
+- Metadata Open Graph/Twitter configurada para enlaces compartidos.
 
 ### Scripts
 
