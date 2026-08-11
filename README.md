@@ -103,6 +103,13 @@ Todas usan el mismo motor de formulario, vista previa, autoguardado y PDF:
 - exportaciones avanzadas
 - modo docente/taller
 
+### Recursos visuales
+
+- Iconografia tecnica: Lucide React.
+- Iconos de salud incluidos en `public/assets/health-icons`: Health Icons.
+- Referencias visuales abiertas consultadas: Bioicons, Health Icons y NIH BioArt.
+- Atlas de equipos: asset local compartido con BioMedTools MX Core.
+
 ### Seguridad de rutas internas
 
 La ruta `/about` esta protegida con HTTP Basic Auth en `proxy.ts`.
