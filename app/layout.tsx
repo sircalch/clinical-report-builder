@@ -68,6 +68,7 @@ const DONATION_URL = process.env.NEXT_PUBLIC_DONATION_URL ?? "";
 const SHOW_INTERNAL_NAV = process.env.NEXT_PUBLIC_SHOW_INTERNAL_NAV === "true";
 const CORE_URL =
   process.env.NEXT_PUBLIC_CORE_URL ?? "https://biomedtools-mx-core.vercel.app";
+const CORE_RESOURCES_URL = new URL("/recursos", CORE_URL).toString();
 
 export default function RootLayout({
   children,
@@ -166,6 +167,12 @@ export default function RootLayout({
                 Reportes correctivos y documentacion academica con formato
                 profesional para practicas de tecnologia medica.
               </p>
+              <a
+                href={CORE_RESOURCES_URL}
+                className="mt-2 inline-flex font-semibold text-cyan-100 hover:text-white"
+              >
+                Recursos abiertos y licencias
+              </a>
             </div>
             {DONATION_URL ? (
               <div className="rounded-md border border-white/15 bg-white/10 px-3 py-2">
