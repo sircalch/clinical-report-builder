@@ -81,9 +81,10 @@ La raiz redirige automaticamente a `/builder/corrective` cuando recibe parametro
 ```txt
 /?activity=quiz&category=<categoria>&score=<puntaje>
 /?activity=case&caseId=<id>&equipment=<equipo>&score=<puntaje>
+/?activity=biomed-3d-lab&equipment=<equipo>
 ```
 
-El generador prellena campos educativos para generar evidencia desde Quiz Arena o Case Simulator. El alumno/docente puede ajustar los campos antes de exportar el PDF.
+El generador prellena campos educativos para generar evidencia desde Quiz Arena, Case Simulator o BioMed 3D Engineering Lab. El alumno/docente puede ajustar los campos antes de exportar el PDF.
 
 ### Plantillas activas
 
@@ -121,6 +122,7 @@ La ruta `/about` esta protegida con HTTP Basic Auth en `proxy.ts`.
 - `NEXT_PUBLIC_CORE_URL` (opcional, default: `https://biomedtools-mx-core.vercel.app`)
 - `NEXT_PUBLIC_QUIZ_ARENA_URL` (opcional, default: `https://biomed-quiz-arena.vercel.app`)
 - `NEXT_PUBLIC_CASE_SIMULATOR_URL` (opcional, default: `https://biomed-case-simulator.vercel.app`)
+- `NEXT_PUBLIC_BIOMED_3D_LAB_URL` (opcional, default: `https://biomed-3d-engineering-lab.vercel.app`)
 
 ### Calidad del repositorio
 

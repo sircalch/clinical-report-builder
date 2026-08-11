@@ -24,6 +24,7 @@ type CorrectiveBuilderPageProps = {
     total?: string;
     maxScore?: string;
     template?: string;
+    reportType?: string;
   }>;
 };
 
@@ -256,6 +257,30 @@ function buildPrefill(
       },
       message: "Reporte prellenado desde Case Simulator.",
       templateLabel: "Caso simulado",
+    };
+  }
+
+  if (params.activity === "biomed-3d-lab") {
+    const equipment = params.equipment ?? "Equipo biomedico";
+    return {
+      values: {
+        ...baseValues,
+        equipo: equipment,
+        fallaReportada:
+          `Evidencia educativa generada desde BioMed 3D Engineering Lab para ${equipment}.${scoreText}`,
+        diagnostico:
+          "Se exploraron subsistemas, hotspots tecnicos, senales, riesgos y fallas comunes del equipo en un entorno 3D formativo.",
+        accionRealizada:
+          "Se reviso el equipo en el laboratorio 3D, se registraron observaciones y se conecto la actividad con el flujo Quiz - Caso - Reporte.",
+        pruebasFuncionales:
+          "La actividad documenta identificacion visual de componentes, interpretacion tecnica basica y checklist educativo asociado al equipo.",
+        recomendaciones:
+          "Complementar con quiz por categoria, resolver un caso relacionado y adaptar cualquier conclusion a protocolo institucional o manual del fabricante.",
+        observaciones:
+          "Reporte generado desde exploracion 3D educativa. No sustituye inspeccion fisica, mantenimiento certificado ni pruebas normativas.",
+      },
+      message: "Reporte prellenado desde BioMed 3D Engineering Lab.",
+      templateLabel: "Evidencia 3D",
     };
   }
 

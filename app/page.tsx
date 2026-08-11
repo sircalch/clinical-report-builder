@@ -22,6 +22,9 @@ const QUIZ_ARENA_URL =
 const CASE_SIMULATOR_URL =
   process.env.NEXT_PUBLIC_CASE_SIMULATOR_URL ??
   "https://biomed-case-simulator.vercel.app";
+const BIOMED_3D_LAB_URL =
+  process.env.NEXT_PUBLIC_BIOMED_3D_LAB_URL ??
+  "https://biomed-3d-engineering-lab.vercel.app";
 
 function toBuilderQuery(params: Record<string, string | string[] | undefined>) {
   const query = new URLSearchParams();
@@ -57,6 +60,11 @@ export default async function Home({ searchParams }: HomeProps) {
   ];
 
   const quickLinks = [
+    {
+      href: `${BIOMED_3D_LAB_URL}?equipment=patient-monitor`,
+      title: "Explorar equipo 3D",
+      body: "Revisa subsistemas y riesgos antes de documentar.",
+    },
     {
       href: "/templates",
       title: "Seleccionar plantilla",
