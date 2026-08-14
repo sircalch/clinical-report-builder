@@ -69,10 +69,11 @@ http://localhost:3000
 
 1. Ir a `/templates`.
 2. Seleccionar plantilla: correctivo, preventivo, verificacion funcional, recepcion, baja tecnica o evidencia de practica.
-3. Llenar formulario.
-4. Click en `Actualizar vista previa`.
-5. Descargar PDF.
-6. Guardar/Cargar/Limpiar borrador local.
+3. Revisar el equipo en BioMed 3D Engineering Lab cuando el flujo venga de una actividad.
+4. Llenar formulario.
+5. Click en `Actualizar vista previa`.
+6. Descargar PDF.
+7. Guardar/Cargar/Limpiar borrador local.
 
 ### Integracion BioMedTools MX Core
 

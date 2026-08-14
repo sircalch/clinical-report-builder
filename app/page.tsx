@@ -1,5 +1,6 @@
 import {
   ArrowRight,
+  Boxes,
   Clock3,
   FileCheck2,
   FileText,
@@ -89,6 +90,11 @@ export default async function Home({ searchParams }: HomeProps) {
       icon: LayoutTemplate,
     },
     {
+      title: "Revisar equipo 3D",
+      body: "Consulta subsistemas, riesgos y senales antes de redactar la evidencia.",
+      icon: Boxes,
+    },
+    {
       title: "Capturar datos",
       body: "Completa equipo, falla, diagnostico, acciones y pruebas funcionales.",
       icon: FileCheck2,
@@ -142,6 +148,13 @@ export default async function Home({ searchParams }: HomeProps) {
                   className="inline-flex min-h-11 items-center justify-center rounded-md border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-teal-200 hover:bg-teal-50 hover:text-teal-800"
                 >
                   Resolver caso antes
+                </a>
+                <a
+                  href={`${BIOMED_3D_LAB_URL}?equipment=patient-monitor`}
+                  className="inline-flex min-h-11 items-center justify-center gap-2 rounded-md border border-cyan-200 bg-cyan-50 px-4 py-2 text-sm font-semibold text-cyan-900 transition hover:border-cyan-300 hover:bg-cyan-100"
+                >
+                  Ver equipo 3D
+                  <Boxes className="h-4 w-4" aria-hidden="true" />
                 </a>
               </div>
 
@@ -252,7 +265,7 @@ export default async function Home({ searchParams }: HomeProps) {
           </div>
         </section>
 
-        <section className="mt-6 grid gap-4 md:grid-cols-3">
+        <section className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
           {workflow.map((item) => (
             <article
               key={item.title}
