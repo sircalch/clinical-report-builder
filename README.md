@@ -86,6 +86,7 @@ La raiz redirige automaticamente a `/builder/corrective` cuando recibe parametro
 ```
 
 El generador prellena campos educativos para generar evidencia desde Quiz Arena, Case Simulator o BioMed 3D Engineering Lab. El alumno/docente puede ajustar los campos antes de exportar el PDF.
+La cabecera incluye una franja de ecosistema para cambiar entre Core, Quiz Arena, 3D Lab, Case Simulator y Report Builder.
 
 ### Plantillas activas
 
